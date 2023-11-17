@@ -4,7 +4,6 @@ from unittest.mock import patch
 
 from libgen_scraper import (
     NonFictionColumns,
-    NonFictionSearchField,
     NonFictionResults,
     search_non_fiction,
 )

@@ -178,7 +178,9 @@ def search_fiction(
     return FictionResults(
         multi_page_search(
             lambda i: libgen_mirror
-            + f"/fiction/?q={query}&criteria={search_criteria.value}&wildcard={1 if wildcards else ''}&language={language}&format={format.value}&page={i}",
+            + f"/fiction/?q={query}&criteria={search_criteria.value}"
+            + "&wildcard={1 if wildcards else ''}&language={language}"
+            + "&format={format.value}&page={i}",
             columns=[column.value for column in FictionColumns],
             hyperlink_columns=[
                 list(FictionColumns).index(column)

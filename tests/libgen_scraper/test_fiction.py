@@ -4,8 +4,6 @@ from unittest.mock import patch
 
 from libgen_scraper import (
     FictionColumns,
-    FictionSearchCriteria,
-    FictionSearchFormat,
     FictionResults,
     search_fiction,
 )
