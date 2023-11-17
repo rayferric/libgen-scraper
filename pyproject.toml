@@ -1,6 +1,6 @@
 [project]
 name = "libgen_scraper"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Ray Ferric", email="63957587+rayferric@users.noreply.github.com" },
 ]

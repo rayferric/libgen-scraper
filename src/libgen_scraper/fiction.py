@@ -138,7 +138,7 @@ def search_fiction(
     format: FictionSearchFormat = FictionSearchFormat.ANY,
     filter: dict[FictionColumns, Pattern] = {},
     limit: int = 100,
-    chunk_callback: Callable[[FictionResults], None] | None = None,
+    chunk_callback: Optional[Callable[[FictionResults], None]] = None,
     libgen_mirror: str = "http://libgen.is",
 ) -> FictionResults:
     """

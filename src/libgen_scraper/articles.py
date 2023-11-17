@@ -99,7 +99,7 @@ def search_articles(
     query: str,
     filter: dict[ArticlesColumns, Pattern] = {},
     limit: int = 100,
-    chunk_callback: Callable[[ArticlesResults], None] | None = None,
+    chunk_callback: Optional[Callable[[ArticlesResults], None]] = None,
     libgen_mirror: str = "http://libgen.is",
 ) -> ArticlesResults:
     """

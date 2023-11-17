@@ -159,7 +159,7 @@ def search_non_fiction(
     search_in_fields: NonFictionSearchField = NonFictionSearchField.DEFAULT,
     filter: dict[NonFictionColumns, Pattern] = {},
     limit: int = 100,
-    chunk_callback: Callable[[NonFictionResults], None] | None = None,
+    chunk_callback: Optional[Callable[[NonFictionResults], None]] = None,
     libgen_mirror: str = "http://libgen.is",
 ) -> NonFictionResults:
     """

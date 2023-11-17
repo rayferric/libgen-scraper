@@ -9,7 +9,7 @@ import re
 def html_to_pandas(
     html: str,
     ignore_header: bool = False,
-    custom_header: list[str] | None = None,
+    custom_header: Optional[list[str]] = None,
     hyperlink_columns: list[int] = [],
 ) -> pd.DataFrame:
     """
@@ -24,7 +24,7 @@ def html_to_pandas(
         HTML document to convert to pandas dataframe
     ignore_header : bool, optional
         whether to ignore the first row of the table
-    custom_header : list[str] | None, optional
+    custom_header : list[str], optional
         list of column names to append at the top of the table
     hyperlink_columns : list[int], optional
         list of column names that contain hyperlinks; The content in these columns will be replaced with the URLs.
@@ -89,7 +89,7 @@ def multi_page_search(
     hyperlink_columns: list[str] = [],
     filter: dict[Enum, Pattern] = {},
     limit: int = 100,
-    chunk_callback: Callable[[pd.DataFrame], None] | None = None,
+    chunk_callback: Optional[Callable[[pd.DataFrame], None]] = None,
 ) -> pd.DataFrame:
     """
     Concatenates multiple pages of results into a single pandas dataframe.
