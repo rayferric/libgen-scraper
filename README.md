@@ -40,7 +40,7 @@ Here's some more examples including more advanced parameters:
 import libgen_scraper as lg
 
 # Find at most 2 non-fiction books published by Helion.
-# Books shall be in Polish, and about Java.
+# Books shall be in Polish and about Java.
 # Print the title of the first book in each chunk of results as they are received.
 non_fiction = lg.search_non_fiction(
     "Helion",
@@ -69,7 +69,7 @@ fiction = lg.search_fiction(
     # Chunk callback is also supported.
 )
 
-# Find at most 10 articles about social media.
+# Find at most 10 scientific articles about social media.
 articles = lg.search_articles(
     "Social Media",
     # Filters are also supported.
@@ -80,7 +80,7 @@ articles = lg.search_articles(
 
 ### Accessing Results
 
-The search results are encapsulated in `...Results` objects, providing methods to access information about each book.
+The search results are encapsulated in `...Results` objects that provide methods to access information about each book.
 Each kind of search has its own `...Results` class with custom methods matching the available information.
 For example, some of the functionality of `NonFictionResults` is:
 
@@ -94,7 +94,7 @@ print(non_fiction.mirrors(0))
 ### Downloading
 
 Every `...Results` object has a `download_links` method that can fetch download links for a specific book.
-Multiple mirrors can be used to download the book, and the mirrors are tried in the order of preference.
+Multiple mirrors can be used to download the book, and the mirrors are scraped in order as returned by `.mirrors(i)`.
 By default only the first mirror is used, but you can specify the number of mirrors to use with the `limit_mirrors` parameter.
 This will however increase the time it takes to fetch the download links.
 
@@ -111,7 +111,7 @@ urlretrieve(download_links[0], non_fiction.id(0) + ".pdf")
 
 Each `...Results` object encapsulates a Pandas DataFrame with the results in a tabular, unstructured format.
 You can save this DataFrame to a CSV file using Pandas.
-Saved data can be loaded back by manually constructing a `...Results` object with a DataFrame as the argument.
+Saved data can be loaded back by manually constructing a `...Results` object with DataFrame as the argument.
 
 ```python
 import pandas as pd
@@ -127,6 +127,6 @@ non_fiction = NonFictionResults(data)
 ## About
 
 This library is not affiliated with the Library Genesis service in any way.
-It is a community project, and is not officially supported by the Library Genesis service nor does it promote the use of the service.
+It is a community project, and is not officially supported by Library Genesis nor does it promote the use of the service.
 
 The library is licensed under the MIT license.
