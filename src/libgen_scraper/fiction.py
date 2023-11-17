@@ -2,7 +2,7 @@ from enum import Enum
 import pandas as pd
 import re
 import humanfriendly as hf
-from typing import Callable, Pattern
+from typing import Callable, Pattern, Optional
 
 from .search import multi_page_search
 from .download import find_download_links
@@ -67,24 +67,24 @@ class FictionResults:
     def __len__(self):
         return len(self.data)
 
-    def authors(self, i: int) -> str | None:
+    def authors(self, i: int) -> Optional[str]:
         return self.data.iloc[i][FictionColumns.AUTHORS.value] or None
 
-    def series(self, i: int) -> str | None:
+    def series(self, i: int) -> Optional[str]:
         return self.data.iloc[i][FictionColumns.SERIES.value] or None
 
-    def title(self, i: int) -> str | None:
+    def title(self, i: int) -> Optional[str]:
         return self.data.iloc[i][FictionColumns.TITLE.value] or None
 
-    def language(self, i: int) -> str | None:
+    def language(self, i: int) -> Optional[str]:
         return self.data.iloc[i][FictionColumns.LANGUAGE.value] or None
 
-    def extension(self, i: int) -> str | None:
+    def extension(self, i: int) -> Optional[str]:
         file = self.data.iloc[i][FictionColumns.FILE.value]
         if file:
             return file.split("/")[0].strip().lower()
 
-    def size(self, i: int) -> int | None:
+    def size(self, i: int) -> Optional[int]:
         file = self.data.iloc[i][FictionColumns.FILE.value]
         if file:
             return hf.parse_size(file.split("/")[1].strip())
@@ -101,7 +101,7 @@ class FictionResults:
 
         return mirrors
 
-    def edit_link(self, i: int) -> str | None:
+    def edit_link(self, i: int) -> Optional[str]:
         edit = self.data.iloc[i][FictionColumns.EDIT.value]
         if edit:
             return edit[1:-1]

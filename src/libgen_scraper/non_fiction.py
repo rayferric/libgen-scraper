@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Pattern, Callable
+from typing import Pattern, Callable, Optional
 import pandas as pd
 import re
 import humanfriendly as hf
@@ -66,19 +66,19 @@ class NonFictionResults:
     def __len__(self):
         return len(self.data)
 
-    def id(self, i: int) -> int | None:
+    def id(self, i: int) -> Optional[int]:
         return self.data.iloc[i][NonFictionColumns.ID.value] or None
 
-    def authors(self, i: int) -> str | None:
+    def authors(self, i: int) -> Optional[str]:
         return self.data.iloc[i][NonFictionColumns.AUTHORS.value] or None
 
-    def title(self, i: int) -> str | None:
+    def title(self, i: int) -> Optional[str]:
         return self.data.iloc[i][NonFictionColumns.TITLE.value] or None
 
-    def publisher(self, i: int) -> str | None:
+    def publisher(self, i: int) -> Optional[str]:
         return self.data.iloc[i][NonFictionColumns.PUBLISHER.value] or None
 
-    def year(self, i: int) -> int | None:
+    def year(self, i: int) -> Optional[int]:
         year = self.data.iloc[i][NonFictionColumns.YEAR.value]
 
         # Find the first number and return it as an integer.
@@ -86,7 +86,7 @@ class NonFictionResults:
         if year:
             return int(year.group(0))
 
-    def pages(self, i: int) -> int | None:
+    def pages(self, i: int) -> Optional[int]:
         pages = self.data[NonFictionColumns.PAGES.value][i]
 
         # If pages string contains a number in [] brackets, return that number instead of the first one found.
@@ -99,11 +99,11 @@ class NonFictionResults:
             if pages:
                 return int(pages.group(0))
 
-    def language(self, i: int) -> str | None:
+    def language(self, i: int) -> Optional[str]:
         return self.data.iloc[i][NonFictionColumns.LANGUAGE.value] or None
 
     # size is in bytes
-    def size(self, i: int) -> int | None:
+    def size(self, i: int) -> Optional[int]:
         size = self.data.iloc[i][NonFictionColumns.SIZE.value]
 
         # Parse human-friendly size strings.
@@ -111,7 +111,7 @@ class NonFictionResults:
             return hf.parse_size(size)
 
     # extension without the leading period
-    def extension(self, i: int) -> str | None:
+    def extension(self, i: int) -> Optional[str]:
         return self.data.iloc[i][NonFictionColumns.EXTENSION.value] or None
 
     def mirrors(self, i: int) -> list[str]:
@@ -125,7 +125,7 @@ class NonFictionResults:
             mirrors.append(mirror2[1:-1])
         return mirrors
 
-    def edit_link(self, i: int) -> str | None:
+    def edit_link(self, i: int) -> Optional[str]:
         edit = self.data.iloc[i][NonFictionColumns.EDIT.value]
         if edit:
             return edit[1:-1]

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from typing import Callable, Pattern
+from typing import Callable, Pattern, Optional
 from enum import Enum
 import re
 

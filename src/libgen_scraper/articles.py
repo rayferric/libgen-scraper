@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Callable, Pattern
+from typing import Callable, Pattern, Optional
 import pandas as pd
 import re
 
@@ -37,21 +37,21 @@ class ArticlesResults:
     def __len__(self):
         return len(self.data)
 
-    def authors(self, i: int) -> str | None:
+    def authors(self, i: int) -> Optional[str]:
         return self.data.iloc[i][ArticlesColumns.AUTHORS.value] or None
 
-    def article(self, i: int) -> str | None:
+    def article(self, i: int) -> Optional[str]:
         return self.data.iloc[i][ArticlesColumns.ARTICLE.value] or None
 
-    def journal(self, i: int) -> str | None:
+    def journal(self, i: int) -> Optional[str]:
         return self.data.iloc[i][ArticlesColumns.JOURNAL.value] or None
 
-    def size(self, i: int) -> str | None:
+    def size(self, i: int) -> Optional[str]:
         file = self.data.iloc[i][ArticlesColumns.FILE.value]
         if file:
             return file.split("/")[0].strip().lower()
 
-    def edit_link(self, i: int) -> str | None:
+    def edit_link(self, i: int) -> Optional[str]:
         file = self.data.iloc[i][ArticlesColumns.FILE.value]
         if file:
             URL_REGEX = r"\[(.*?)\]"
