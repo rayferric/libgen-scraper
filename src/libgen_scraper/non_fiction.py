@@ -87,7 +87,7 @@ class NonFictionResults:
             return int(year.group(0))
 
     def pages(self, i: int) -> Optional[int]:
-        pages = self.data[NonFictionColumns.PAGES.value][i]
+        pages = self.data.iloc[i][NonFictionColumns.PAGES.value]
 
         # If pages string contains a number in [] brackets, return that number instead of the first one found.
         brackets = re.search(r"\[(\d+)\]", pages)
